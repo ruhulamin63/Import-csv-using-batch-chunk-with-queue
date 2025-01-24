@@ -23,7 +23,7 @@ class ShowDataController extends Controller
             $query->where('gender', $request->gender);
         }
 
-        $students = $query->get();
+        $students = $query->with('batch')->paginate(50);
 
         $branches = Batch::all();
 

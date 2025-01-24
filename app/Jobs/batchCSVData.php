@@ -43,9 +43,13 @@ class batchCSVData implements ShouldQueue
 
         foreach ($this->data as $batch) {
 
-            $batchInput = array_combine($this->header, $batch);
+            
+            \Log::info('Job started...');
 
+            $batchInput = array_combine($this->header, $batch);
             Student::create($batchInput);
+            
+            \Log::info('Job finished successfully!');
         }
 
     }

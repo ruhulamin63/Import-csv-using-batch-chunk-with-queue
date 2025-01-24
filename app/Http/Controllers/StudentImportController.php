@@ -15,7 +15,7 @@ class StudentImportController extends Controller
      */
     public function index(): View
     {
-        return view('students.studentsImport');
+        return view('students.index');
     }
 
     /**
@@ -56,8 +56,7 @@ class StudentImportController extends Controller
                 }
                 $batch->add(new batchCSVData($data, $header));
             }
-
-            return redirect()->route('students.import.index')
+            return redirect()->route('students.index')
                 ->with('success', 'CSV Import added on queue. will update you once done.');
 
             // return redirect()->route('sent.mail');

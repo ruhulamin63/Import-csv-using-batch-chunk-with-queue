@@ -9,18 +9,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('students-import', [StudentImportController::class, 'index'])->name('students.import.index');
-Route::post('students-import', [StudentImportController::class, 'store'])->name('students.import.store');
 Route::get('students', [ShowDataController::class, 'index'])->name('students.index');
+Route::post('students', [StudentImportController::class, 'store'])->name('students.store');
 
 //test mail pass
 Route::get('send-mail', function () {
     $details = [
-        'title' => 'Mail from a AmarSolution',
+        'title' => 'Mail from a Laravel app',
         'body' => 'This is for testing email using smtp',
     ];
 
-    Mail::to('task@akaarit.com')->send(new \App\Mail\SendJobMail($details));
+    Mail::to('test@example.com')->send(new \App\Mail\SendJobMail($details));
 
     dd("Email is Sent.");
 })->name('sent.mail');

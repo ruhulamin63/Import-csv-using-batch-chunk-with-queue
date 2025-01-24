@@ -10,6 +10,6 @@ class Student extends Model
 
     public function batch()
     {
-        return $this->belongsToMany(Batch::class);
+        return $this->belongsTo(Batch::class, 'branch_id');
     }
 }
