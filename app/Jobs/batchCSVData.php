@@ -46,7 +46,6 @@ class batchCSVData implements ShouldQueue
             $batchInput = array_combine($this->header, $batch);
 
             Student::create($batchInput);
-
         }
 
     }

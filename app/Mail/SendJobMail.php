@@ -30,7 +30,7 @@ class SendJobMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from AmarSolution')
+        return $this->subject('Mail from Self')
             ->view('emails.SendJobMail');
     }
 }
