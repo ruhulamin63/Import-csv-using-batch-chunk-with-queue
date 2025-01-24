@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>AmarSolution</title>
+    <title>Send Job Mail</title>
 </head>
 
 <body>
