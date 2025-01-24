@@ -34,6 +34,10 @@ composer update
 php artisan migrate:fresh --seed
 ```
 
+```bash
+php artisan queue:work --timeout=0 //start queue process
+```
+
 ### Optional
 ```bash
 npm install && npm run dev
