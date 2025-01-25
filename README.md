@@ -29,6 +29,16 @@ DB_PASSWORD=
 ```bash
 composer update
 ```
+### .env
+```bash
+QUEUE_CONNECTION=database
+```
+### Generate Migration:
+```bash
+php artisan queue:table
+
+php artisan queue:batches-table
+```
 
 ```bash
 php artisan migrate:fresh --seed
@@ -37,6 +47,12 @@ php artisan migrate:fresh --seed
 ### start queue process
 ```bash
 php artisan queue:work --timeout=0
+```
+
+### Find duplicate emails(Optional)
+#### .env
+```bash
+CACHE_DRIVER=file
 ```
 
 ### Optional

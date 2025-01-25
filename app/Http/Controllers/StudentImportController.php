@@ -31,9 +31,10 @@ class StudentImportController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'csv' => 'required|file|mimes:csv',
-        // ]);
+        $request->validate([
+            'csv' => 'required|file|mimes:csv',
+        ]);
+        
         if ($request->has('csv')) {
             $csv = file($request->csv);
 

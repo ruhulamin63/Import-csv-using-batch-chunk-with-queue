@@ -25,6 +25,17 @@
                     </div>
                 @endif
 
+                @if (\Cache::has('existing_emails'))
+                    <div class="alert alert-warning">
+                        The following emails already existed and were skipped:
+                        <ul>
+                            @foreach (\Cache::get('existing_emails') as $email)
+                                <li>{{ $email }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="input-group mt-3">
                     <input type="file" name="csv" class="form-control" accept=".csv" required>
                     <button type="submit" class="btn btn-success">Import</button>

@@ -40,17 +40,36 @@ class batchCSVData implements ShouldQueue
 
     public function handle(): void
     {
+        $existingEmails = [];
+        $newRecords = [];
 
         foreach ($this->data as $batch) {
-
-            
-            \Log::info('Job started...');
-
             $batchInput = array_combine($this->header, $batch);
-            Student::create($batchInput);
-            
-            \Log::info('Job finished successfully!');
+
+            // Check if the email already exists
+            $existingData = Student::where('email', $batchInput['email'])
+                ->exists();
+
+            if ($existingData) {
+                $existingEmails[] = $batchInput['email'];
+            } else {
+                try {
+                    Student::create($batchInput);
+                    $newRecords[] = $batchInput['email'];
+                } catch (\Exception $e) {
+                    \Log::error('Error creating record: ', [
+                        'error' => $e->getMessage(),
+                        'data' => $batchInput,
+                    ]);
+                }
+            }
         }
 
+        \Cache::put('existing_emails', $duplicateData, now()->addMinutes(1));
+
+        // \Log::info('Import Summary', [
+        //     'existing' => $duplicateData,
+        //     'new' => $newRecords,
+        // ]);
     }
 }
